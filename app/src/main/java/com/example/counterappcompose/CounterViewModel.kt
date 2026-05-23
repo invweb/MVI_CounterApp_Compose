@@ -4,34 +4,34 @@ import androidx.lifecycle.ViewModel
 import kotlinx.coroutines.flow.*
 
 /**
- * ViewModel, который действует как Store в архитектуре MVI.
- * Он хранит текущее состояние (State) и обрабатывает входящие намерения (Intents).
+ * A ViewModel that acts as a Store in the MVI architecture.
+ * It stores the current state (State) and handles incoming intentions (Intents).
  */
 class CounterViewModel : ViewModel() {
 
-    // 1. StateFlow: Текущее, наблюдаемое состояние системы.
+    // 1. StateFlow: The current, observable state of the system.
     private val _state = MutableStateFlow(CounterState())
     val state: StateFlow<CounterState> = _state.asStateFlow()
 
     /**
-     * 2. Функция-обработчик (Reducer): Главный метод MVI.
-     * Принимает Intent и обновляет StateFlow, вызывая следующую итерацию состояния.
-     * @param intent - Действие пользователя или системы.
+     * 2. Handler function (Reducer): The main method of MVI.
+     * Accepts an Intent and updates the StateFlow, triggering the next iteration of the state.
+     * @param intent - User or system action.
      */
     fun handleIntent(intent: CounterIntent) {
-        // Логика Reducer: (Текущее Состояние + Интент) -> Новое Состояние
+        // Reducer Logic: (Current State + Intent) -> New State
         val newState = when (intent) {
             is CounterIntent.Increment -> {
                 CounterState(count = _state.value.count + 1)
             }
             is CounterIntent.Decrement -> {
-                // Добавим некоторую бизнес-логику: счетчик не может быть меньше нуля
+                // Add some business logic: the counter cannot be less than zero
                 val newCount = if (_state.value.count > 0) _state.value.count - 1 else 0
                 CounterState(count = newCount)
             }
         }
 
-        // Обновляем состояние, вызывая реакцию во всех наблюдателях (View).
+        // Update the state, triggering a reaction in all observers (View).
         _state.value = newState
     }
 }
