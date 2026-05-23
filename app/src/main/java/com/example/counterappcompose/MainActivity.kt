@@ -89,7 +89,7 @@ fun CounterComposable(
             Button(
                 onClick = onIncrementIntent
             ) {
-                Text(stringResource(R.string.reduce))
+                Text(stringResource(R.string.increase))
             }
         }
     }
