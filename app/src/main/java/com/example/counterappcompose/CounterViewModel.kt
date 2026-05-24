@@ -22,11 +22,11 @@ class CounterViewModel : ViewModel() {
         // Reducer Logic: (Current State + Intent) -> New State
         val newState = when (intent) {
             is CounterIntent.Increment -> {
-                CounterState(count = _state.value.count + 1)
+                CounterState(count = _state.value.count + 2)
             }
             is CounterIntent.Decrement -> {
                 // Add some business logic: the counter cannot be less than zero
-                val newCount = if (_state.value.count > 0) _state.value.count - 1 else 0
+                val newCount = if (_state.value.count >= 5) _state.value.count - 5 else 0
                 CounterState(count = newCount)
             }
         }
