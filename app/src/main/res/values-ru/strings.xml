@@ -1,0 +1,6 @@
+<resources>
+    <string name="app_name">CounterAppCompose</string>
+    <string name="counter">Счетчик:</string>
+    <string name="reduce">– УМЕНЬШИТЬ</string>
+    <string name="increase">УВЕЛИЧИТЬ +</string>
+</resources>
