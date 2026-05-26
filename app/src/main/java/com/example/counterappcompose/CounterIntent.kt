@@ -1,6 +1,6 @@
 package com.example.counterappcompose
 
 sealed class CounterIntent {
-    data object Increment : CounterIntent() // Интент "Нажать +1"
-    data object Decrement : CounterIntent() // Интент "Нажать -1"
+    data object Increment : CounterIntent() // The "Press +1" intent
+    data object Decrement : CounterIntent() // The "Press -1" intent
 }
